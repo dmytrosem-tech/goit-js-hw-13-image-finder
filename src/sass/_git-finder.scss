@@ -1,0 +1,54 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+#form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search {
+  display: inline-block;
+  width: 265px;
+  height: 45px;
+  padding-left: 30px;
+}
+
+.btnSbmt {
+  margin-top: 30px;
+  width: 300px;
+  height: 50px;
+  cursor: pointer;
+  background-color: rgb(77, 173, 236);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 500px 500px 500px;
+  grid-row-gap: 30px;
+  grid-column-gap: 30px;
+  justify-content: center;
+}
+
+#more {
+  margin-top: 30px;
+  width: 300px;
+  height: 50px;
+  cursor: pointer;
+  background-color: rgb(236, 100, 20);
+}
