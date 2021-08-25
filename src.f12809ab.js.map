@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.js"],"names":["console","log"],"mappings":";;;AAEA,aAFA,IAAA,EAAA,EAAA,QAAA,uBACA,EAAA,EAAA,QAAA,iBACA,SAAA,EAAA,GAAA,OAAA,GAAA,EAAA,WAAA,EAAA,CAAA,QAAA,GAAAA,QAAQC,IAAI","file":"src.f12809ab.js","sourceRoot":"../src","sourcesContent":["import someApi from './js/apiService.js';\nimport refs from './js/refs.js';\nconsole.log('lol');\n"]}
