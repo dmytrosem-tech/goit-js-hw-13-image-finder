@@ -1,0 +1,46 @@
+html {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+body {
+  text-align: center;
+}
+
+.search-form {
+  margin-top: 50px;
+}
+
+.input-field {
+  padding: 20px;
+  width: 400px;
+  height: 40px;
+  font-size: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 500px 500px 500px;
+  grid-row-gap: 30px;
+  grid-column-gap: 30px;
+  justify-content: center;
+  margin-top: 50px;
+  list-style: none;
+}
+
+.stats {
+  text-align: left;
+}
+
+.more {
+  margin-top: 40px;
+  width: 445px;
+  height: 85px;
+  font-size: 30px;
+  background-color: rgb(229, 236, 120);
+  cursor: pointer;
+}
