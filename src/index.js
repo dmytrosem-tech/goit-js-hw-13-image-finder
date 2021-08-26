@@ -3,7 +3,7 @@ import refs from './js/refs.js';
 import fPictures from './js/apiService.js';
 import picsListTpl from './template/picturesListTpl.hbs';
 
-import error from '../node_modules/@pnotify/core/dist/PNotify.js';
+import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 
 // Переменная для смены страницы и переменные для вввода в запрос АРI----------------------------->
@@ -25,8 +25,30 @@ function onInput(e) {
 
 // Рендер карточки картинки----------------------------------------------------------------------->
 function renderMurkup(arr) {
-  const markup = picsListTpl(arr.map(item => item));
-  refs.container.insertAdjacentHTML('beforeend', markup);
+  if (arr.length > 1) {
+    const markup = picsListTpl(arr.map(item => item));
+    refs.container.insertAdjacentHTML('beforeend', markup);
+  } else if ((arr = [])) {
+    refs.searchField.value = '';
+    refs.container.innerHTML = '';
+
+    const errNotify = error({
+      text: 'Pictures not found. Please enter a more specific query.',
+      delay: 2000,
+      addClass: 'notify-err',
+      closer: false,
+      sticker: false,
+    });
+  } else if (result.status === 404) {
+    const errNotify = error({
+      text: 'No oictures with this query. Please enter a more specific.',
+      delay: 2000,
+      addClass: 'notify-err',
+      closer: false,
+      sticker: false,
+    });
+    refs.container.innerHTML = '';
+  }
 }
 
 // Очищаем поле поиска после ошибки--------------------------------------------------------------->
