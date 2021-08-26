@@ -52,6 +52,7 @@ body {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   list-style: none;
+  margin-bottom: 20px;
 }
 
 .photo-card {
