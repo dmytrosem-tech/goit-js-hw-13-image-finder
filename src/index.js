@@ -5,6 +5,7 @@ import picsListTpl from './template/picturesListTpl.hbs';
 import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
+import "basiclightbox/dist/basiclightbox.min.css"
 
 // Переменная для смены страницы и переменные для вввода в запрос АРI----------------------------->
 let page = 1;
@@ -31,7 +32,11 @@ function onInput(e) {
     .then(page++)
     .catch(errRes);
 
-  setTimeout(() => rClass(), 1000);
+  setTimeout(() => rClass(), 2000);
+
+  setTimeout(() => onScroll(), 1000);
+    
+  
 }
 
 // Коллбек клика по картинке---------------------------------------------------------------------->
@@ -54,6 +59,7 @@ function onImgClick(e) {
 function onRes() {
   refs.gallery.innerHTML = '';
   refs.loadMore.classList.add('is-hidden');
+  refs.upArrow.classList.add('is-hidden');
 }
 
 // Рендер карточки картинки----------------------------------------------------------------------->
@@ -89,9 +95,15 @@ function errRes(res) {
   refs.gallery.innerHTML = '';
 }
 
-// Коллбек снимающый класс невидимости с кнопки "Загрузи еще"------------------------------------->
+// Коллбек снимающий класс невидимости с кнопки "Загрузи еще" и стрелки "Вверх"------------------------------------->
 function rClass() {
   refs.loadMore.classList.remove('is-hidden');
+  refs.upArrow.classList.remove('is-hidden');
+}
+
+// Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
+function onScroll() {
+  refs.loadMore.scrollIntoView({bloc: "center", behavior: 'smooth'})
 }
 
 // Слушатели-------------------------------------------------------------------------------------->
@@ -99,3 +111,6 @@ refs.form.addEventListener('submit', onInput);
 refs.reset.addEventListener('click', onRes);
 refs.loadMore.addEventListener('click', onInput);
 refs.gallery.addEventListener('click', onImgClick);
+
+
+  
