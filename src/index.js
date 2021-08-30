@@ -30,6 +30,8 @@ function onInput(e) {
     .then(renderMurkup)
     .then(page++)
     .catch(errRes);
+
+  setTimeout(() => rClass(), 1000);
 }
 
 // Коллбек клика по картинке---------------------------------------------------------------------->
@@ -48,6 +50,12 @@ function onImgClick(e) {
   console.log(imgURL);
 }
 
+// Коллбек клика по кнопке RESET ----------------------------------------------------------------->
+function onRes() {
+  refs.gallery.innerHTML = '';
+  refs.loadMore.classList.add('is-hidden');
+}
+
 // Рендер карточки картинки----------------------------------------------------------------------->
 function renderMurkup(arr) {
   if (arr.length > 1) {
@@ -55,7 +63,7 @@ function renderMurkup(arr) {
     refs.gallery.insertAdjacentHTML('beforeend', markup);
   } else if ((arr = [])) {
     refs.searchField.value = '';
-    refs.container.innerHTML = '';
+    refs.gallery.innerHTML = '';
 
     const errNotify = error({
       text: 'Pictures not found. Please enter a more specific query.',
@@ -72,16 +80,22 @@ function renderMurkup(arr) {
       closer: false,
       sticker: false,
     });
-    refs.container.innerHTML = '';
+    refs.gallery.innerHTML = '';
   }
 }
 
 // Очищаем поле поиска после ошибки--------------------------------------------------------------->
 function errRes(res) {
-  refs.container.innerHTML = '';
+  refs.gallery.innerHTML = '';
+}
+
+// Коллбек снимающый класс невидимости с кнопки "Загрузи еще"------------------------------------->
+function rClass() {
+  refs.loadMore.classList.remove('is-hidden');
 }
 
 // Слушатели-------------------------------------------------------------------------------------->
 refs.form.addEventListener('submit', onInput);
+refs.reset.addEventListener('click', onRes);
 refs.loadMore.addEventListener('click', onInput);
 refs.gallery.addEventListener('click', onImgClick);

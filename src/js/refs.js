@@ -2,6 +2,8 @@ export default {
   container: document.querySelector('.container'),
   form: document.querySelector('#search-form'),
   searchField: document.querySelector('.input-field'),
+  searchBtn: document.querySelector('.search__btn'),
+  reset: document.querySelector('.search__btn-res'),
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.more'),
 };
