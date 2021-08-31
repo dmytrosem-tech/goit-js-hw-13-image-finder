@@ -5,7 +5,7 @@ import picsListTpl from './template/picturesListTpl.hbs';
 import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basiclightbox.min.css';
+import '../node_modules/basiclightbox/dist/basiclightbox.min.css';
 
 // Переменная для смены страницы и переменные для вввода в запрос АРI----------------------------->
 let page = 1;
