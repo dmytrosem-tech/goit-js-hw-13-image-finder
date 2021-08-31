@@ -29,6 +29,7 @@ body {
 }
 
 .main-title {
+  font-size: 25px;
   margin-top: 40px;
 }
 
@@ -116,14 +117,7 @@ body {
   border-radius: 20px;
 }
 
-/* .topNubex {
-  text-decoration: none;
-  font-size: 20px;
-  color: rgb(61, 61, 59);
-  position: fixed;
-  right: 45px;
-  bottom: 45px;
-} */
+/* up arrow  */
 .back_to_top {
   font-size: 40px;
   position: fixed;

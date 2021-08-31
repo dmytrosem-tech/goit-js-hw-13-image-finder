@@ -20,19 +20,19 @@
     <title>image-finder</title>
   </head>
   <body>
+    <h1 class="main-title">WANNA SOME PICTURES?</h1>
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="query"
+        autocomplete="off"
+        class="input-field"
+        placeholder="Search images..."
+      />
+      <button type="submit" class="search__btn">Search</button>
+      <button type="reset" class="search__btn-res">Reset</button>
+    </form>
     <section class="section">
-      <h1 class="main-title">WANNA SOME PICTURES?</h1>
-      <form class="search-form" id="search-form">
-        <input
-          type="text"
-          name="query"
-          autocomplete="off"
-          class="input-field"
-          placeholder="Search images..."
-        />
-        <button type="submit" class="search__btn">Search</button>
-        <button type="reset" class="search__btn-res">Reset</button>
-      </form>
       <div class="container">
         <ul class="gallery"></ul>
       </div>
@@ -40,8 +40,6 @@
     </section>
     <!-- up  -->
     <a class="back_to_top" title="Наверх">↑</a>
-
-    <!-- <a href="#" title="Вернуться к началу страницы" class="topNubex is-hidden">Вверх</a> -->
     <script src="./index.js"></script>
   </body>
 </html>
