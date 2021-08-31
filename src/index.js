@@ -5,7 +5,7 @@ import picsListTpl from './template/picturesListTpl.hbs';
 import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
-import "basiclightbox/dist/basiclightbox.min.css"
+import 'basiclightbox/dist/basiclightbox.min.css';
 
 // Переменная для смены страницы и переменные для вввода в запрос АРI----------------------------->
 let page = 1;
@@ -35,8 +35,8 @@ function onInput(e) {
   setTimeout(() => rClass(), 2000);
 
   setTimeout(() => onScroll(), 1000);
-    
-  
+
+  console.log('lol');
 }
 
 // Коллбек клика по картинке---------------------------------------------------------------------->
@@ -103,7 +103,7 @@ function rClass() {
 
 // Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
 function onScroll() {
-  refs.loadMore.scrollIntoView({bloc: "center", behavior: 'smooth'})
+  refs.loadMore.scrollIntoView({ bloc: 'center', behavior: 'smooth' });
 }
 
 // Слушатели-------------------------------------------------------------------------------------->
@@ -111,6 +111,3 @@ refs.form.addEventListener('submit', onInput);
 refs.reset.addEventListener('click', onRes);
 refs.loadMore.addEventListener('click', onInput);
 refs.gallery.addEventListener('click', onImgClick);
-
-
-  
