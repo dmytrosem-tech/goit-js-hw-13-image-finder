@@ -7,4 +7,5 @@ export default {
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.more'),
   up: document.querySelector('.back_to_top'),
+  body: document.querySelector('body'),
 };

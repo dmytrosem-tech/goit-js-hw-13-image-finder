@@ -33,7 +33,7 @@ function onInput(e) {
     .then(page++)
     .catch(errRes);
 
-  setTimeout(() => onScroll(), 1000);
+  setTimeout(() => onScroll(), 1500);
 }
 
 // Коллбек клика по картинке---------------------------------------------------------------------->
@@ -101,7 +101,8 @@ function rClass() {
 
 // Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
 function onScroll() {
-  refs.loadMore.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  // refs.loadMore.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  refs.body.scrollIntoView({ block: 'end', behavior: 'smooth' });
 }
 
 // Функции для стрелки, появление и логика-------------------------------------------------------->
