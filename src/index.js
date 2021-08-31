@@ -6,6 +6,7 @@ import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/
 import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
 // import '../node_modules/basiclightbox/dist/basiclightbox.min.css';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
 // Переменная для смены страницы и переменные для вввода в запрос АРI----------------------------->
 let page = 1;
