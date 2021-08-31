@@ -59,7 +59,7 @@ function onImgClick(e) {
 function onRes() {
   refs.gallery.innerHTML = '';
   refs.loadMore.classList.add('is-hidden');
-  refs.upArrow.classList.add('is-hidden');
+  refs.up.classList.add('is-hidden');
 }
 
 // Рендер карточки картинки----------------------------------------------------------------------->
@@ -98,7 +98,7 @@ function errRes(res) {
 // Коллбек снимающий класс невидимости с кнопки "Загрузи еще" и стрелки "Вверх"------------------------------------->
 function rClass() {
   refs.loadMore.classList.remove('is-hidden');
-  refs.upArrow.classList.remove('is-hidden');
+  refs.up.classList.remove('is-hidden');
 }
 
 // Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"

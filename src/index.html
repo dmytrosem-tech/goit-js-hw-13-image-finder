@@ -38,24 +38,18 @@
       </div>
       <button class="more is-hidden">Load more</button>
     </section>
-    <!--     up arrow        -->
-    <div
-      class="is-hidden"
-      id="topcontrol"
-      style="position: fixed; z-index: 100500; bottom: 5px; right: 5px; cursor: pointer; opacity: 1"
-      title="К началу страницы"
-    >
-      <a href="javascript:smoothJumpUp()">
-        <img src="https://sites.google.com/site/poleznoznat/r7.png" />
-      </a>
-    </div>
-    <script type="text/javascript">
-      var smoothJumpUp = function () {
-        if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-          window.scrollBy(0, -50);
-          setTimeout(smoothJumpUp, 20);
-        }
-      };
+    <!-- up  -->
+    <div id="scrollToTop" class="is-hidden" onclick="goUp();">ВВЕРХ</div>
+
+    <script>
+      var timeOut;
+      function goUp() {
+        var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+        if (top > 0) {
+          window.scrollBy(0, -100);
+          timeOut = setTimeout('goUp()', 20);
+        } else clearTimeout(timeOut);
+      }
     </script>
     <script src="./index.js"></script>
   </body>

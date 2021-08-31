@@ -6,5 +6,5 @@ export default {
   reset: document.querySelector('.search__btn-res'),
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.more'),
-  upArrow: document.querySelector('#topcontrol'),
+  up: document.querySelector('#scrollToTop'),
 };

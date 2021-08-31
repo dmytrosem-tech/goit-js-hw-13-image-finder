@@ -115,3 +115,12 @@ body {
   border: 1px solid grey;
   border-radius: 20px;
 }
+#scrollToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 1;
+  transition: all 0.5s ease-in;
+}
