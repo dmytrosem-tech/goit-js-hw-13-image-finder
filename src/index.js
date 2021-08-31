@@ -33,8 +33,6 @@ function onInput(e) {
     .then(page++)
     .catch(errRes);
 
-  // setTimeout(() => rClass(), 2000);
-
   setTimeout(() => onScroll(), 1000);
 }
 
@@ -58,7 +56,6 @@ function onImgClick(e) {
 function onRes() {
   refs.gallery.innerHTML = '';
   refs.loadMore.classList.add('is-hidden');
-  refs.up.classList.add('is-hidden');
 }
 
 // Рендер карточки картинки----------------------------------------------------------------------->
@@ -104,7 +101,7 @@ function rClass() {
 
 // Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
 function onScroll() {
-  refs.loadMore.scrollIntoView({ bloc: 'end', behavior: 'smooth' });
+  refs.loadMore.scrollIntoView({ block: 'end', behavior: 'smooth' });
 }
 
 // Функции для стрелки, появление и логика-------------------------------------------------------->
