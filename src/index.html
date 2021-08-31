@@ -39,18 +39,9 @@
       <button class="more is-hidden">Load more</button>
     </section>
     <!-- up  -->
-    <div id="scrollToTop" class="is-hidden" onclick="goUp();">ВВЕРХ</div>
+    <a class="back_to_top" title="Наверх">↑</a>
 
-    <script>
-      var timeOut;
-      function goUp() {
-        var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-        if (top > 0) {
-          window.scrollBy(0, -100);
-          timeOut = setTimeout('goUp()', 20);
-        } else clearTimeout(timeOut);
-      }
-    </script>
+    <!-- <a href="#" title="Вернуться к началу страницы" class="topNubex is-hidden">Вверх</a> -->
     <script src="./index.js"></script>
   </body>
 </html>

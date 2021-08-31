@@ -35,8 +35,6 @@ function onInput(e) {
   setTimeout(() => rClass(), 2000);
 
   setTimeout(() => onScroll(), 1000);
-
-  console.log('lol');
 }
 
 // Коллбек клика по картинке---------------------------------------------------------------------->
@@ -103,7 +101,26 @@ function rClass() {
 
 // Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
 function onScroll() {
-  refs.loadMore.scrollIntoView({ bloc: 'center', behavior: 'smooth' });
+  refs.loadMore.scrollIntoView({ bloc: 'end', behavior: 'smooth' });
+}
+
+// Функции для стрелки, появление и логика-------------------------------------------------------->
+function trackScroll() {
+  var scrolled = window.pageYOffset;
+  var coords = document.documentElement.clientHeight;
+
+  if (scrolled > coords) {
+    refs.up.classList.add('back_to_top-show');
+  }
+  if (scrolled < coords) {
+    refs.up.classList.remove('back_to_top-show');
+  }
+}
+function backToTop() {
+  if (window.pageYOffset > 0) {
+    window.scrollBy(0, -80);
+    setTimeout(backToTop, 20);
+  }
 }
 
 // Слушатели-------------------------------------------------------------------------------------->
@@ -111,3 +128,6 @@ refs.form.addEventListener('submit', onInput);
 refs.reset.addEventListener('click', onRes);
 refs.loadMore.addEventListener('click', onInput);
 refs.gallery.addEventListener('click', onImgClick);
+
+window.addEventListener('scroll', trackScroll);
+refs.up.addEventListener('click', backToTop);
