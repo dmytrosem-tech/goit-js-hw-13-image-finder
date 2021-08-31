@@ -33,7 +33,7 @@ function onInput(e) {
     .then(page++)
     .catch(errRes);
 
-  setTimeout(() => rClass(), 2000);
+  // setTimeout(() => rClass(), 2000);
 
   setTimeout(() => onScroll(), 1000);
 }
@@ -66,6 +66,7 @@ function renderMurkup(arr) {
   if (arr.length > 1) {
     const markup = picsListTpl(arr.map(item => item));
     refs.gallery.insertAdjacentHTML('beforeend', markup);
+    setTimeout(() => rClass(), 2000);
   } else if ((arr = [])) {
     refs.searchField.value = '';
     refs.gallery.innerHTML = '';
@@ -77,6 +78,7 @@ function renderMurkup(arr) {
       closer: false,
       sticker: false,
     });
+    refs.loadMore.classList.add('is-hidden');
   } else if (result.status === 404) {
     const errNotify = error({
       text: 'Оппа',
