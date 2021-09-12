@@ -7,6 +7,8 @@ import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
 // import '../node_modules/basiclightbox/dist/basiclightbox.min.css';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import fEvents from './js/api2.js';
+import evTpl from './template/evTpl.hbs';
 
 // Переменная для смены страницы и переменные для вввода в запрос АРI----------------------------->
 let page = 1;
@@ -34,6 +36,17 @@ function onInput(e) {
     .catch(errRes);
 
   setTimeout(() => onScroll(), 1500);
+
+  fEvents()
+  .then(ren)
+  .catch(err => console.log(err))
+}
+
+// временно сюда поставлю, это тренировка апи--------
+function ren (arr) {
+  console.log(arr);
+  const markup2 = evTpl(arr.map(item => item))
+  refs.gallery.insertAdjacentHTML('beforeend', markup2);
 }
 
 // Коллбек клика по картинке---------------------------------------------------------------------->
@@ -61,6 +74,7 @@ function onRes() {
 // Рендер карточки картинки----------------------------------------------------------------------->
 function renderMurkup(arr) {
   if (arr.length > 1) {
+    console.log(arr);
     const markup = picsListTpl(arr.map(item => item));
     refs.gallery.insertAdjacentHTML('beforeend', markup);
     setTimeout(() => rClass(), 2000);

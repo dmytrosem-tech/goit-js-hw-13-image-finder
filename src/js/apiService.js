@@ -6,3 +6,5 @@ export default function fPictures(inputValue, baseApi, myApiKey, page) {
     )
     .then(res => res.data.hits);
 }
+
+
