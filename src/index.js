@@ -166,6 +166,7 @@ function backToTop() {
 
 //  Pagination--------------------------------------------------------------------------------->
 function onPaginationBarPush(eventData) {
+  event.preventDefault();
   const inputValue = refs.searchField.value;
   page = eventData.page;
   axios
