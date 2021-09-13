@@ -6,6 +6,9 @@ import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/
 import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import { pagination } from './js/pagination.js';
+
+import axios from 'axios';
 // import fEvents from './js/api2.js';
 // import evTpl from './template/evTpl.hbs';
 
@@ -17,9 +20,7 @@ const myApiKey = '22969021-19f1494240440c9eacf690dfa';
 // Коллбек сабмита на поле ввода------------------------------------------------------------------>
 function onInput(e) {
   e.preventDefault();
-
   const inputValue = refs.searchField.value;
-
   if (!inputValue.trim()) {
     alert({
       title: 'Hmm...',
@@ -30,12 +31,12 @@ function onInput(e) {
   }
 
   fPictures(inputValue, baseApi, myApiKey, page)
+    .then(res => res.data.hits)
     .then(renderMurkup)
     .then(page++)
     .catch(errRes);
 
   // setTimeout(() => onScroll(), 1500);
-  // setTimeout(() => targetEl.classList.remove('hidden'), 1000);
 
   // fEvents()
   // .then(ren)
@@ -68,8 +69,10 @@ function onImgClick(e) {
 // Коллбек клика по кнопке RESET ----------------------------------------------------------------->
 function onRes() {
   refs.gallery.innerHTML = '';
+  refs.paginationEl.classList.add('hidden');
+  page = 1;
   // refs.loadMore.classList.add('is-hidden');
-  targetEl.classList.add('hidden');
+  // targetEl.classList.add('hidden');
 }
 
 // Рендер карточки картинки----------------------------------------------------------------------->
@@ -78,6 +81,7 @@ function renderMurkup(arr) {
     const markup = picsListTpl(arr.map(item => item));
     refs.gallery.insertAdjacentHTML('beforeend', markup);
     // setTimeout(() => rClass(), 2000);
+    setTimeout(() => refs.paginationEl.classList.remove('hidden'), 500);
   } else if ((arr = [])) {
     refs.searchField.value = '';
     refs.gallery.innerHTML = '';
@@ -139,25 +143,42 @@ function backToTop() {
   }
 }
 
-// Бусконечный Скролл ---------------------------------------------------------------------->
-const entry = entries => {
+// // Бeсконечный Скролл ---------------------------------------------------------------------->
+// const entry = entries => {
+//   const inputValue = refs.searchField.value;
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting && inputValue !== '') {
+//       if (page === 1) {
+//         page = 2;
+//       }
+//       fPictures(inputValue, baseApi, myApiKey, page)
+//         .then(res => res.data.hits)
+//         .then(renderMurkup)
+//         .then(page++)
+//         .catch(errRes);
+//     }
+//   });
+// };
+// const observer = new IntersectionObserver(entry, {
+//   rootMargin: '180px',
+// });
+// observer.observe(refs.intersector);
+
+//  Pagination--------------------------------------------------------------------------------->
+function onPaginationBarPush(eventData) {
   const inputValue = refs.searchField.value;
-  entries.forEach(entry => {
-    if (entry.isIntersecting && inputValue !== '') {
-      if (page === 1) {
-        page = 2;
-      }
-      fPictures(inputValue, baseApi, myApiKey, page)
-        .then(renderMurkup)
-        .then(page++)
-        .catch(errRes);
-    }
-  });
-};
-const observer = new IntersectionObserver(entry, {
-  rootMargin: '180px',
-});
-observer.observe(refs.intersector);
+  page = eventData.page;
+  axios
+    .get(
+      `${baseApi}?image_type=photo&orientation=horizontal&q=${inputValue}&page=${page}&per_page=12&key=${myApiKey}`,
+    )
+    .then(res => res.data.hits)
+    .then((refs.gallery.innerHTML = ''))
+    .then(renderMurkup)
+    .catch(errRes);
+}
+
+pagination.on('afterMove', onPaginationBarPush);
 
 // Слушатели-------------------------------------------------------------------------------------->
 refs.form.addEventListener('submit', onInput);

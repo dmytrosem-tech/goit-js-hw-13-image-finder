@@ -9,4 +9,5 @@ export default {
   up: document.querySelector('.back_to_top'),
   body: document.querySelector('body'),
   intersector: document.querySelector('.intersector'),
+  paginationEl: document.querySelector('.tui-pagination'),
 };
