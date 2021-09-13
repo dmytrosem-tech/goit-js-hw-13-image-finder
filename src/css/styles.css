@@ -22,6 +22,10 @@ body {
   visibility: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 .section {
   max-width: 1160px;
   margin: 0 auto;
@@ -141,6 +145,17 @@ body {
 
 .back_to_top-show {
   display: block;
+}
+
+/* Бесконечный скролл */
+.infinity {
+  font-size: 30px;
+  text-align: center;
+  opacity: 0;
+}
+
+.infinity.visible {
+  opacity: 1;
 }
 
 /* Коробка для принудительного появления скролла))) Так себе костыль...

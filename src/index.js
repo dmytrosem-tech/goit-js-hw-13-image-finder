@@ -5,7 +5,6 @@ import picsListTpl from './template/picturesListTpl.hbs';
 import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
-// import '../node_modules/basiclightbox/dist/basiclightbox.min.css';
 import 'basiclightbox/dist/basicLightbox.min.css';
 // import fEvents from './js/api2.js';
 // import evTpl from './template/evTpl.hbs';
@@ -35,7 +34,8 @@ function onInput(e) {
     .then(page++)
     .catch(errRes);
 
-  setTimeout(() => onScroll(), 1500);
+  // setTimeout(() => onScroll(), 1500);
+  // setTimeout(() => targetEl.classList.remove('hidden'), 1000);
 
   // fEvents()
   // .then(ren)
@@ -68,16 +68,16 @@ function onImgClick(e) {
 // Коллбек клика по кнопке RESET ----------------------------------------------------------------->
 function onRes() {
   refs.gallery.innerHTML = '';
-  refs.loadMore.classList.add('is-hidden');
+  // refs.loadMore.classList.add('is-hidden');
+  targetEl.classList.add('hidden');
 }
 
 // Рендер карточки картинки----------------------------------------------------------------------->
 function renderMurkup(arr) {
   if (arr.length > 1) {
-    console.log(arr);
     const markup = picsListTpl(arr.map(item => item));
     refs.gallery.insertAdjacentHTML('beforeend', markup);
-    setTimeout(() => rClass(), 2000);
+    // setTimeout(() => rClass(), 2000);
   } else if ((arr = [])) {
     refs.searchField.value = '';
     refs.gallery.innerHTML = '';
@@ -89,7 +89,7 @@ function renderMurkup(arr) {
       closer: false,
       sticker: false,
     });
-    refs.loadMore.classList.add('is-hidden');
+    // refs.loadMore.classList.add('is-hidden');
   } else if (result.status === 404) {
     const errNotify = error({
       text: 'Оппа',
@@ -107,17 +107,17 @@ function errRes(res) {
   refs.gallery.innerHTML = '';
 }
 
-// Коллбек снимающий класс невидимости с кнопки "Загрузи еще" и стрелки "Вверх"------------------------------------->
-function rClass() {
-  refs.loadMore.classList.remove('is-hidden');
-  refs.up.classList.remove('is-hidden');
-}
+// // Коллбек снимающий класс невидимости с кнопки "Загрузи еще" и стрелки "Вверх"------------------------------------->
+// function rClass() {
+//   // refs.loadMore.classList.remove('is-hidden');
+//   refs.up.classList.remove('is-hidden');
+// }
 
-// Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
-function onScroll() {
-  // refs.loadMore.scrollIntoView({ block: 'end', behavior: 'smooth' });
-  refs.body.scrollIntoView({ block: 'end', behavior: 'smooth' });
-}
+// // Коллбек плавного скролла к кнопке "Загрузи еще------------------------------------------------>"
+// function onScroll() {
+//   // refs.loadMore.scrollIntoView({ block: 'end', behavior: 'smooth' });
+//   refs.body.scrollIntoView({ block: 'center', behavior: 'smooth' });
+// }
 
 // Функции для стрелки, появление и логика-------------------------------------------------------->
 function trackScroll() {
@@ -131,6 +131,7 @@ function trackScroll() {
     refs.up.classList.remove('back_to_top-show');
   }
 }
+
 function backToTop() {
   if (window.pageYOffset > 0) {
     window.scrollBy(0, -80);
@@ -138,11 +139,31 @@ function backToTop() {
   }
 }
 
+// Бусконечный Скролл ---------------------------------------------------------------------->
+const entry = entries => {
+  const inputValue = refs.searchField.value;
+  entries.forEach(entry => {
+    if (entry.isIntersecting && inputValue !== '') {
+      if (page === 1) {
+        page = 2;
+      }
+      fPictures(inputValue, baseApi, myApiKey, page)
+        .then(renderMurkup)
+        .then(page++)
+        .catch(errRes);
+    }
+  });
+};
+const observer = new IntersectionObserver(entry, {
+  rootMargin: '180px',
+});
+observer.observe(refs.intersector);
+
 // Слушатели-------------------------------------------------------------------------------------->
 refs.form.addEventListener('submit', onInput);
 refs.reset.addEventListener('click', onRes);
-refs.loadMore.addEventListener('click', onInput);
 refs.gallery.addEventListener('click', onImgClick);
 
 window.addEventListener('scroll', trackScroll);
 refs.up.addEventListener('click', backToTop);
+// refs.loadMore.addEventListener('click', onInput);
