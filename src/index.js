@@ -3,7 +3,7 @@ import refs from './js/refs.js';
 import fPictures from './js/apiService.js';
 import picsListTpl from './template/picturesListTpl.hbs';
 import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
-import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/BrightTheme.css';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import { pagination } from './js/pagination.js';
